@@ -1,0 +1,7 @@
+@import url("file:///home/suyashk13/robin/config/wofi/search.css");
+
+/* Style the first entry as the clear-history action */
+#entry:first-child #text {
+    color: #f7768e;
+    text-align: right;
+}
