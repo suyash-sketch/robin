@@ -1,0 +1,7 @@
+require("monitors")
+require("input")
+require("looknfeel")
+require("bindings")
+require("autostart")
+require("windowrules")
+-- require("envs")
