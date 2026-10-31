@@ -1,0 +1,122 @@
+/* Personal Waybar styling. Theme colors come from ~/robin/current/theme/waybar.css. */
+@import url("file:///home/suyashk13/robin/current/theme/waybar.css");
+
+* {
+  font-family: "CaskaydiaMono Nerd Font";
+  font-size: 14px;
+  font-weight: normal;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+}
+
+window#waybar {
+  background-color: @background;
+  color: @foreground;
+}
+
+#custom-launcher,
+#workspaces,
+#clock,
+#network,
+#bluetooth,
+#pulseaudio,
+#cpu,
+#memory,
+#battery,
+#tray {
+  padding: 0 8px;
+  background-color: transparent;
+}
+
+#custom-launcher {
+  margin-left: 8px;
+  padding: 0 11px;
+  color: @purple;
+  background-color: @surface;
+  border-radius: 5px;
+}
+
+#workspaces button {
+  padding: 0 7px;
+  margin: 3px 2px;
+  color: @muted;
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+  border-radius: 4px;
+  transition: color 120ms ease, background-color 120ms ease;
+}
+
+#workspaces button:hover {
+  color: @foreground;
+  background-color: @surface-alt;
+}
+
+#workspaces button.active {
+  color: @blue;
+  background-color: @surface;
+}
+
+#workspaces button.urgent {
+  color: @red;
+  border-bottom: 2px solid @red;
+}
+
+#workspaces button.empty {
+  color: @muted;
+  opacity: 0.55;
+}
+
+#clock {
+  color: @purple;
+  padding: 0 12px;
+}
+
+#network {
+  color: @cyan;
+}
+
+#bluetooth {
+  color: @blue;
+}
+
+#pulseaudio {
+  color: @blue;
+}
+
+#pulseaudio.muted {
+  color: @muted;
+}
+
+#cpu,
+#memory {
+  color: @foreground;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.warning {
+  color: @yellow;
+}
+
+#battery.critical {
+  color: @red;
+}
+
+#tray {
+  margin-right: 8px;
+}
+
+tooltip {
+  color: @foreground;
+  background-color: @surface;
+  border: 1px solid @muted;
+  border-radius: 5px;
+  padding: 5px 7px;
+}
+
+tooltip label {
+  color: @foreground;
+}
