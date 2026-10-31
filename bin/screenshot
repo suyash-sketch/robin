@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mode="${1:-region}"
+
+case "$mode" in
+	region|window|output)
+		;;
+	*)
+		echo "Usage: screenshot [region|window|output]" >&2
+		exit 2
+		;;
+esac
+
+output_dir="$HOME/Pictures/Screenshots"
+mkdir -p "$output_dir"
+
+filename="Screenshot_$(date +'%Y%m%d_%H%M%S').png"
+output_file="$output_dir/$filename"
+
+# press the screenshot shortcut again to cancel an active region selection
+if pgrep -x slurp >/dev/null 2>&1; then
+	pkill -x slurp || true
+	exit 0
+fi
+
+exec hyprshot \
+	--mode "$mode" \
+	--freeze \
+	--output-folder "$output_dir" \
+	--filename "$filename"
+
+# screenshot using satty
+
+# hyprshot --mode "$mode" --raw --freeze |
+# 	GDK_BACKEND=x11 satty --filename - \
+# 		--output-filename "$output_file" \
+# 		--actions-on-enter save-to-clipboard \
+# 		--save-after-copy \
+# 		--copy-command 'wl-copy' \
+# 		--early-exit copy

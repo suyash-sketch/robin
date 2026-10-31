@@ -1,0 +1,40 @@
+
+#!/usr/bin/env bash
+set -euo pipefail
+
+style="$HOME/robin/config/wofi/clipboard.css"
+clear_action="🗑 "
+
+selection="$(
+    {
+        printf '%s\n' "$clear_action"
+        cliphist list
+    } | wofi --dmenu \
+        --prompt "Clipboard History" \
+        --sort-order default \
+        --style "$style"
+)" || exit 0
+
+[[ -n "$selection" ]] || exit 0
+
+# Handle the clear-history menu item.
+if [[ "$selection" == "$clear_action" ]]; then
+    confirmation="$(
+        printf '%s\n' "Yes, delete everything" "Cancel" |
+        wofi --dmenu \
+            --prompt "Delete all clipboard history?" \
+            --style "$style"
+    )" || exit 0
+
+    if [[ "$confirmation" == "Yes, delete everything" ]]; then
+        cliphist wipe
+        wl-copy --clear
+        notify-send "Clipboard History" "All clipboard history cleared."
+    fi
+
+    exit 0
+fi
+
+# Copy the selected clipboard entry.
+printf '%s\n' "$selection" | cliphist decode | wl-copy
+

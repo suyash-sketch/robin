@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Personal Wofi power menu
+
+show_power_menu() {
+    local selection
+
+    selection=$(
+        printf '%s\n' \
+            $'\u200B Lock' \
+            $'\u200C󰤄 Suspend' \
+            $'\u200D Logout' \
+            $'\u2060󰜉 Restart' \
+            $'\u2063󰐥 Shutdown' |
+        wofi --dmenu \
+            --prompt "Power Options" \
+            --width 260 \
+            --height 230 \
+            --sort-order alphabetical \
+            --hide-search \
+            --style "$HOME/robin/config/wofi/power-menu.css"
+    ) || return 0
+
+    case "$selection" in
+        *Lock*)     hyprlock ;;
+        *Suspend*)  systemctl suspend ;;
+        *Logout*)   hyprctl dispatch exit ;;
+        *Restart*)  systemctl reboot ;;
+        *Shutdown*) systemctl poweroff ;;
+    esac
+}
+
+show_power_menu
