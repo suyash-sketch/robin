@@ -1,0 +1,17 @@
+onboarding = false
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[ui.toast]
+delivery = "system"
+
+[keys]
+prefix = "`"
+
+[ui]
+agent_panel_sort = "priority"
+tab_bar_right = [
+  { type = "datetime", format = "[ %I:%M ]" },
+  # { type = "command", command = "~/.config/herdr/status.sh", interval_seconds = 5, timeout_seconds = 2 },
+]
