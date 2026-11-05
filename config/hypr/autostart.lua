@@ -20,13 +20,15 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user start plasma-kwallet-pam.service")
 
     -- Idle management and screen locking
-    -- Hypridle is managed by its systemd user service.
+    -- Hypridle was managed by its systemd user service but now managed here.
+    start_app("hypridle")
 
     -- Status bar
     start_app("waybar")
 
     -- Notifications
-    -- Mako is managed by its systemd user service.
+    -- Mako was managed by its systemd user service but now managed here
+    start_app("mako")
 
     -- Volume and brightness OSD
     start_app("swayosd-server")
@@ -45,6 +47,7 @@ hl.on("hyprland.start", function()
 
     -- Wallpaper will be configured separately.
     -- Do not use Omarchy's current/background symlink.
+    start_app("hyprpaper")
 
     -- Start one appropriate Polkit authentication
     -- agent after checking which one Fedora provides.
